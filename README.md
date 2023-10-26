@@ -32,36 +32,36 @@ Now, run the server using this command
 ## __Specifications__
 
 ### __Views__
-#### The project has multiple views to handle login, logout, register, create entry, delete entry and favorite
-#### ```Login view``` makes sure that the user is a valid user and then logs in
-#### ```Register view``` helps in registering the new users
-#### ```index view``` this view lets user see all their entries and lets them add new entries, edit or delete existing entries and favorite the special entries
-#### ```create view``` lets you create the entries
-#### ```edit view``` lets you edit the entries that are already there in the list
-#### ```delete view``` lets you delete any existing entry
-#### ```favorites view``` lets you see all the favorite entries that are already inside the favorites tab
-#### ```favorites toggle view``` lets you add or remove the entries from favorites tab
+The project has multiple views to handle login, logout, register, create entry, delete entry, and favorite
+```Login view``` makes sure that the user is a valid user and then logs in
+```Register view``` helps in registering the new users
+```index view``` this view lets the user see all their entries and lets them add new entries, edit or delete existing entries, and favorite the special entries
+```create view``` lets you create the entries
+```edit view``` lets you edit the entries that are already there in the list
+```delete view``` lets you delete any existing entry
+```favorites view``` lets you see all the favorite entries that are already inside the favorites tab
+```favorites toggle view``` lets you add or remove the entries from the favorites tab
 
 ### __Models__
-#### The project has one model ```DiaryEntry``` to support all the functions
+The project has one model ```DiaryEntry``` to support all the functions
 
 ### __Forms__
-#### The project has one form ```DiaryEntryForm``` for getting diary entry information
+The project has one form ```DiaryEntryForm``` for getting diary entry information
 
 ### __Urls__
-#### The project has multiple urls for all the functions of the website
-#### ```default page``` to load homepage
-#### ```login page``` to load login form
-#### ```register page``` to load register form
-#### ```create page``` to load create entry form
-#### ```edit page``` to load edit entry form
-#### ```delete page``` to delete entry and then load homepage
-#### ```favorite toggle page``` to add or remove from favorites and load homepage
-#### ```favorites page``` to load favorites tab
-#### ```logout page``` to logout a user and load the login page
+The project has multiple URLs for all the functions of the website
+```default page``` to load homepage
+```login page``` to load login form
+```register page``` to load register form
+```create page``` to load create entry form
+```edit page``` to load edit entry form
+```delete page``` to delete the entry and then load the homepage
+```favorite toggle page``` to add or remove from favorites and load homepage
+```favorites page``` to load favorites tab
+```logout page``` to logout a user and load the login page
 
 ### __Styling__
-#### The project uses bootstrap and cloudflare css libraries to implement styling for the website. 
-#### There is also a custom styles.css which I created to add more styles and animations for the website
+The project uses Bootstrap and Cloudflare CSS libraries to implement styling for the website. 
+There is also a custom ```styles.css``` which I created to add more styles and animations to the website
 
 #### Project created by Yash Firke.
