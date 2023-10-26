@@ -35,7 +35,7 @@ python manage.py runserver
 ## __Specifications__
 
 ### __Views__
-The project has multiple views to handle login, logout, register, create entry, delete entry, and favorite
+The project has multiple views to handle login, logout, register, create entry, delete entry, and favorite <br>
 ```Login view``` makes sure that the user is a valid user and then logs in. <br>
 ```Register view``` helps in registering the new users. <br>
 ```index view``` this view lets the user see all their entries and lets them add new entries, edit or delete existing entries, and favorite the special entries. <br>
@@ -52,7 +52,7 @@ The project has one model ```DiaryEntry``` to support all the functions.
 The project has one form ```DiaryEntryForm``` for getting diary entry information.
 
 ### __Urls__
-The project has multiple URLs for all the functions of the website
+The project has multiple URLs for all the functions of the website <br>
 ```default page``` to load homepage. <br>
 ```login page``` to load login form. <br>
 ```register page``` to load register form. <br>
