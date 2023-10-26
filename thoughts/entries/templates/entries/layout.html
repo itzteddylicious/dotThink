@@ -1,0 +1,144 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Meta tags for responsive website -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Title of the page -->
+    <title>dotThink</title>
+
+    <!-- Internet libraries of css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- My css file -->
+    <link rel="stylesheet" href="{% static 'entries/styles.css' %}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <h1 style="font-family: 'Lucida Console', 'Courier New', monospace; color: #39FF33;" class="mr-5"><b><i>dotThink</i></b></h1>
+        
+        <ul class="navbar-nav mr-auto d-none d-md-flex">
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'index' %}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'create_diary_entry' %}">New Thought</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'favorite_list' %}">Favorites</a>
+            </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav ml-auto d-none d-md-flex">
+            {% if user.is_authenticated %}
+            <li class="nav-item ml-md-auto">
+                <span class="navbar-text">Signed in as <strong>{{ user.username }}</strong></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item ml-md-auto">
+                <span class="navbar-text"><strong>Not signed in.</strong></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            {% endif %}
+        </ul>
+
+        <!-- Hamburger menu icon for small screens -->
+        <div class="menu-toggle d-md-none">
+            <div class="fas fa-bars fa-2x"></div>
+        </div>
+    </nav>
+
+    <!-- Hamburger menu for small screens -->
+    <div class="mobile-menu d-md-none">
+        <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'create_diary_entry' %}">New Thought</a></li>
+            <li><a href="{% url 'favorite_list' %}">Favorites</a></li>
+            {% endif %}
+        </ul>
+        <hr>
+        <ul class="my-2">
+            {% if user.is_authenticated %}
+            <li class="nav-item ml-md-auto">
+                <span class="navbar-text">Signed in as <strong>{{ user.username }}</strong></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+            </li>
+            {% else %}
+            <li class="nav-item ml-md-auto">
+                <span class="navbar-text"><strong>Not signed in.</strong></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register' %}">Register</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <!-- JavaScript to toggle the mobile menu -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.querySelector(".menu-toggle");
+            const mobileMenu = document.querySelector(".mobile-menu");
+
+            let menuVisible = false;
+
+            menuToggle.addEventListener("click", function (event) {
+                event.stopPropagation();
+
+                if (!menuVisible) {
+                    // Show the menu
+                    mobileMenu.style.display = "block";
+                    mobileMenu.style.animation = "showMenu 0.3s ease-in-out forwards";
+                    menuToggle.innerHTML = '<i class="fas fa-times custom-icon"></i>'; // Use a custom class for the cross icon
+                    menuToggle.classList.add("close"); // Add the class for the cross symbol
+                    menuVisible = true;
+
+                    document.addEventListener("click", closeMenu);
+                } else {
+                    closeMenu();
+                }
+            });
+
+            function closeMenu() {
+                mobileMenu.style.animation = "hideMenu 0.3s ease-in-out forwards";
+                setTimeout(function () {
+                    mobileMenu.style.display = "none";
+                    menuToggle.innerHTML = '<i class="fas fa-bars fa-2x"></i>'; // Re-add the hamburger icon
+                    menuToggle.classList.remove("close");
+                    menuVisible = false;
+                }, 300);
+
+                document.removeEventListener("click", closeMenu);
+            }
+        });
+      
+    </script>
+
+    <hr>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

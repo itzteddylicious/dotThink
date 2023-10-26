@@ -1,0 +1,49 @@
+{% extends 'entries/layout.html' %}
+
+{% block body %}
+
+        <!-- Add button for new entries -->
+        <div class="add-button-container">
+          <a href="{% url 'create_diary_entry' %}">
+              <div class="expandable-button" id="add-button">
+                  <span class="plus">+</span>
+                  <span class="label"><b>New Thought</b></span>
+              </div>
+          </a>
+        </div>
+
+        <!-- All the existing entries -->
+        <div class="row mt-3">
+            {% for entry in entries %}
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ entry.title }}</h5>
+                    <p class="card-text">{{ entry.content }}</p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Created on {{ entry.created_at }}</small>
+                    <a href="{% url 'edit_diary_entry' entry.pk %}" class="btn btn-outline-primary btn-sm ml-2">Edit</a>
+                    <a href="{% url 'delete_diary_entry' entry.pk %}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
+                    <form method="POST" action="{% url 'favorite_add' entry.pk %}" class="form-inline">
+                      {% csrf_token%}
+                      {% if entry in request.user.favorite.all %}
+                          <input class="btn btn-secondary btn-sm" type="submit" value="Remove from Favorites" />
+                      {% else %}
+                          <input class="btn btn-secondary btn-sm" type="submit" value="Add to Favorites" />
+                      {% endif %}
+                  </form>
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+            <!-- Message if no entries -->
+              <p class="mx-5"><i>Nothing here :( 
+                  <br>
+                  Lets <a href="{% url 'create_diary_entry' %}">Talk</a> with your diary now!
+                </i>
+              </p>
+            {% endfor %}
+        </div>
+
+{% endblock %}

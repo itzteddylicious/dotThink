@@ -1,0 +1,43 @@
+{% extends 'entries/layout.html' %}
+
+{% block body %}
+
+        <h1 class="mx-3"><b><i>Favorites</i></b></h1>
+
+        <!-- Display all the favorite entries -->
+        <div class="row mt-3">
+            {% for entry in request.user.favorite.all %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ entry.title }}</h5>
+                        <p class="card-text">{{ entry.content }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Created on {{ entry.created_at }}</small>
+                        <a href="{% url 'edit_diary_entry' entry.pk %}" class="btn btn-outline-primary btn-sm ml-2">Edit</a>
+                        <a href="{% url 'delete_diary_entry' entry.pk %}" class="btn btn-outline-danger btn-sm ml-2">Delete</a>
+                        <form method="POST" action="{% url 'favorite_add' entry.pk %}" class="form-inline">
+                            {% csrf_token %}
+                            <input class="btn btn-secondary btn-sm remove-button ml-2" type="submit" value="Remove from Favorites" onclick="fadeOut(this)" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <!-- Message if not favorite entries -->
+            <p class="mx-5">You don't have any favorites yet.</p>
+            {% endfor %}
+        </div>
+
+        <!-- JavaScript for removing entry from the favorites list -->
+        <script>
+            function fadeOut(element) {
+                element.classList.add('fade-out');
+                setTimeout(function () {
+                    element.classList.add('removed');
+                }, 300);
+            }
+        </script>
+
+{% endblock %}
