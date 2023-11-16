@@ -1,4 +1,4 @@
-#__dotThink: A web-based personal diary app__
+# __dotThink: A web-based personal diary app__
 #### Video Demo: <https://youtu.be/iYlONk5Uo1E>
 
 ## __Description__
